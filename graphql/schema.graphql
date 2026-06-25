@@ -1,0 +1,19 @@
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Query {
+  schedule(id: ID! @eq): DoctorSchedule @find
+  schedules: [DoctorSchedule!]! @all
+  availableSchedules(status: String = "available" @eq): [DoctorSchedule!]! @all
+}
+
+type DoctorSchedule {
+  id: ID!
+  doctor_name: String!
+  specialization: String!
+  schedule_date: String!
+  start_time: String!
+  end_time: String!
+  status: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}

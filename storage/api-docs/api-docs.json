@@ -1,0 +1,129 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Jadwal Dokter Service",
+        "description": "API Sistem Jadwal Dokter Rawat Jalan",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Local Server"
+        }
+    ],
+    "paths": {
+        "/api/v1/schedules": {
+            "get": {
+                "tags": [
+                    "Doctor Schedule"
+                ],
+                "summary": "Ambil semua slot jadwal dokter yang tersedia",
+                "operationId": "7fb339a121714ab96318f237cb440fa3",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Doctor Schedule"
+                ],
+                "summary": "Konfirmasi booking slot jadwal dokter",
+                "operationId": "d91278077561c33c608c79accc1fbab0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "schedule_id": {
+                                        "type": "integer"
+                                    },
+                                    "doctor_name": {
+                                        "type": "string"
+                                    },
+                                    "specialization": {
+                                        "type": "string"
+                                    },
+                                    "schedule_date": {
+                                        "type": "string"
+                                    },
+                                    "start_time": {
+                                        "type": "string"
+                                    },
+                                    "end_time": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/schedules/{id}": {
+            "get": {
+                "tags": [
+                    "Doctor Schedule"
+                ],
+                "summary": "Ambil detail jadwal dokter",
+                "operationId": "c13b928483533c86131a7f3aaf9ccc0f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "name": "X-IAE-KEY",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Doctor Schedule",
+            "description": "API Jadwal Dokter"
+        }
+    ]
+}
